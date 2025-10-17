@@ -1,3 +1,4 @@
+#nyf
 module faith_coin::faith_coin {
     use sui::coin::{Self, TreasuryCap};
     use sui::tx_context::{sender, TxContext};
