@@ -1,4 +1,3 @@
-/// Create a simple coin with icon.
 module faith_coin::faith_coin {
     use sui::coin::{Self, TreasuryCap};
     use sui::tx_context::{sender, TxContext};
@@ -6,16 +5,13 @@ module faith_coin::faith_coin {
     use std::option;
     use sui::url::{Self, Url};
 
-    /// The coin type for Faith Coin.
     struct FAITH_COIN has drop {}
 
-    /// Initialize the Faith Coin and mint initial supply to sender.
     fun init(coin_type: FAITH_COIN, ctx: &mut TxContext) {
         let treasury_cap = create_currency(coin_type, ctx);
         transfer::public_transfer(treasury_cap, sender(ctx));
     }
 
-    /// Internal helper to create the Faith Coin currency.
     fun create_currency<T: drop>(
         coin_type: T,
         ctx: &mut TxContext
@@ -36,7 +32,6 @@ module faith_coin::faith_coin {
         treasury_cap
     }
 
-    /// Mint `amount` of Faith Coin and send to `recipient`.
     public entry fun mint(
         cap: &mut TreasuryCap<FAITH_COIN>,
         amount: u64,
